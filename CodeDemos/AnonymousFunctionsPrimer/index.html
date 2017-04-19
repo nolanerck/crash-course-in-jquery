@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function getMusician()
+		{
+			alert( "Musician Selected: Eric Clapton" );
+		}
+
+		getMusician2 = function()
+		{
+			alert( "Musician Selected: John Lennon" );
+		}
+	</script>	
+</head>
+<body>
+	
+	<button id="btn1" onclick="getMusician()">Click Me!</button>
+	<br />
+	<button id="btn2" onclick="getMusician2()">Also Click Me!</button>
+
+	<!-- 
+		PS. Don't ever use inline JavaScript if you can avoid it. 
+
+		Those onclick="" bits are just to keep this demo simple. 
+		That his a horrible practice in the real world.
+	-->
+
+</body>
+</html>

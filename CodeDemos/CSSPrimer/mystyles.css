@@ -1,0 +1,31 @@
+body
+{
+	font-family: "Verdana";
+}
+
+.title
+{	
+	font-size: 24px;
+}
+
+#dc-music li
+{
+	font-style: italic;
+}
+
+.ian-band
+{
+	background-color: #0f0;
+	width: 15%;
+}
+
+.kevin-band
+{
+	background-color: orange;
+	width: 15%;
+}
+
+#sacramento-music li:hover
+{
+	font-weight: bold;
+}

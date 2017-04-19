@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Crash Course in jQuery</title>
+
+		<link rel="stylesheet" href="../Reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../Reveal.js/css/theme/moon.css" id="theme">
+		<style>
+			.reveal h2
+			{ 
+				text-transform: none; 
+				font-size: 60px;
+			}
+
+			.reveal ul li, .reveal p
+			{
+				font-size: 34px;
+			}
+
+			.highlight 
+			{ 
+				color: green 
+			}
+		</style>		
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h2>Crash Course in jQuery</h2>
+					<p>Nolan Erck</p>
+					<p>South of Shasta Consulting</p>
+				</section>
+
+				<section>
+					<h2>About Me</h2>
+					<ul>
+						<li>Software Consultant (southofshasta.com)
+							<ul>
+								<li>Software Development, Training, Design</li>
+							</ul>
+						</li>
+
+						<li>ColdFusion, C++, Java, jQuery, PHP, .NET, HTML5, Android, SQL, etc...</li>
+						<li>Manager, SacInteractive User Group</li>
+						<li>Reformed Video Game Developer (Grim Fandango, SimPark, StarWars Rogue Squadron, etc).</li>
+						<li>Music Junkie</li>
+					</ul>
+				</section>
+
+				<section data-background-image="./images/cd_shelf.png">
+				</section>
+
+				<section data-background-image="./images/vinyl_shelf.png">
+				</section>
+
+				<section data-background-image="./images/charlie_brown.png" data-background-size="contain">
+				</section>
+
+				<section>
+					<h2>Today's Agenda</h2>
+					<ul>
+						<li>What is jQuery?</li>
+						<li>Installing jQuery</li>
+						<li>CSS &amp; Anonymous Functions Primer</li>
+						<li>Some Basic Examples</li>
+						<li>Events</li>
+						<li>Animation</li>
+						<li>Loops</li>
+						<li>Other Fun Stuff</li>
+						<li>Questions, etc</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Code And Slides</h2>
+					<p>GitHub: nolanerck</p>
+					<p>crash-course-in-jquery</p>
+				</section>
+
+				<section>
+					<h2>3 Layers in a Client-side Web Page</h2>
+					<ul>
+						<li><strong>Content</strong> - The HTML itself, the words on the page.</li>
+						<li><strong>Layout / Presentation</strong> - CSS, the fonts and colors used, location, etc.</li>
+						<li><strong>Behaviors / Business Logic</strong> - JavaScript, the stuff your web page “does”, the interactive things.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>3 Layers in a Client-side Web Page</h2>
+					<ul>
+						<li><strong>HTML</strong> - straight forward, easy, portable markup.</li>
+						<li><strong>CSS</strong> - flexible, stays out of the way, does its job well.</li>
+						<li><strong>JavaScript</strong> - is terrible (in parts).</li>
+						<li>Enter jQuery</li>
+					</ul>
+				</section>				
+
+				<section>
+					<h2>What is jQuery?</h2>
+					<ul>
+						<li>jQuery <em>is</em> JavaScript</li>
+						<li>Makes JavaScript tasks easier.</li>
+						<li>Anything you do in jQuery, can do in JavaScript.</li>
+						<li>It will just take more code, time, less browser compatibility, more re-work, etc.</li>
+						<li>Been around for many years.</li>
+						<li>Ubiquitous with modern web development.</li>
+						<li>Default go-to tool for many current projects.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>What are some ways that JavaScript is terrible?</h2>
+				</section>
+
+				<section>
+					<h2>We used to write code like this...</h2>
+					<img src="./images/badcode1.png" />
+					<ul>
+						<li>What's wrong with this picture?</li>
+						<li>No separation of concerns.</li>
+						<li>Content, presentation, behavior jumbled together.</li>
+						<li>Can't easily swap in new business logic.</li>
+						<li>Cluttered HTML mixed with CSS. </li>
+						<li>JavaScript is harder to debug. And on, and on...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Then we learned this was better...</h2>
+					<img src="./images/badcode2.png" />
+					<ul>
+						<li>Concerns are separated.</li>
+						<li>Easy to the 3 layers.</li>
+						<li>And that was a big improvement...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Except maybe for this part</h2>
+					<img src="./images/badcode3.png" />
+					<ul>
+						<li>When does this code run?</li> 
+						<li>When the page first loads?</li>
+						<li>Are we sure exactly WHEN that is?</li>
+						<li>No. But we can fix that easily enough...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>So let's try this...</h2>
+					<img src="./images/badcode4.png" />
+				</section>
+
+				<section>
+					<ul>
+						<li>What happens if we have a second button in our app that needs similar code?</li>
+						<img src="./images/badcode5.png" />
+						<li>That LOOKS right, but won't actually work!</li>
+						<li>JavaScript only allows ONE window.onload to fire per page. So one of these will be ignored, and our app is now broken.</li>
+						<li>(Some browsers play nicely, but not all of them.)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Creating a Simple Ajax Request...</h2>
+					<img src="./images/ajaxcode1.png" />
+				</section>
+
+				<section>
+					<h2>Other cross-browser problems<sup>*</sup>...</h2>
+
+					<ul>
+						<li>Animations</li>
+						<li>Hiding / showing blocks of content</li>
+						<li>Ajax GET / POST requests</li>
+						<li>Form posts via JavaScript</li>
+						<li>Form field validation</li>
+						<li>And on and on...</li>
+					</ul>
+					<p>(<sup>*</sup>or just really annoying to write and debug.)</p>
+				</section>
+
+				<section>
+					<h2>There's Gotta Be a Better Way!</h2>
+					<ul>
+						<li>Enter jQuery</li>
+						<li>It solves that weird onLoad problem, and lots of cross-browser quirks...</li>
+						<li>Makes many other UI related tasks easier...</li>
+						<li>And generally makes many JavaScript tasks less annoying.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>How to install jQuery</h2>
+					<ul>
+						<li>Go to jQuery.com</li>
+						<li>Click “Download jQuery”</li>
+						<li>Stick the jquery.js file in your website</li>
+						<li>Do this:</li>
+						<li>&lt;script src="jquery.js"&gt;&lt;/script&gt;</li>
+					</ul>
+					<p>Boom. Done.</p>
+				</section>
+
+
+				<section>
+					<h2>CSS Primer</h2>
+					<ul>
+						<li>CSS Selectors</li>
+						<li>#ID - single, unique element<br />(Don't use the same ID twice on a page.)</li>
+						<li>.class - multilpe elements</li>
+						<li>Can also use the tag name<br />(div, button, img, etc)</li>
+						<li>Can mix and match to get specific<br />(form#signup-form input.requiredField)</li>
+						<li>Example: CSSPrimer</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Anonymous Functions</h2>
+					<p>Regular JavaScript function, written 2 ways:</p>
+					<img src="./images/anonfunc1.png" />
+				</section>
+
+				<section>
+					<h2>Anonymous Functions (cont)</h2>
+					<ul>
+						<li>Our earlier example:</li>
+						<img src="./images/anonfunc2.png" />
+						<li>Note that doUpdate() only contains one line of code.</li>
+						<li>Also note addEventListener(...doUpdate...)  
+							<br />no parenthesis when “calling doUpdate
+						</li>
+				</section>
+
+				<section>
+					<h2>Anonymous Functions (cont)</h2>
+					<ul>
+						<li>Another way to do the same thing:</li>
+						<img src="./images/anonfunc3.png" />
+						<li>Got rid of doUpdate()</li>
+						<li>Now just have the code in-line as the 2nd argument to addEventListener()</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Anonymous Functions (cont)</h2>
+					<ul>
+						<li>Or, to get fancier...</li>
+						<img src="./images/anonfunc4.png" />
+						<ul>
+							<li>The 2nd argument is now an <em>anonymous function</em>.</li>
+							<li>A function is just “a block of code”.</li>
+							<li>We're using “a block of code” here.</li>
+							<li>We just didn't bother giving it a name (e.g. “doUpdate”)</li>
+						</ul>
+				</section>
+
+				<section>
+					<h2>So what's that weird $ thing?</h2>
+					<ul>
+						<li>The jQuery operator.</li>
+						<li>How you interact with jQuery.</li>
+						<img src="./images/jqueryexample1.png" />
+					</ul>
+				</section>
+
+				<section>
+					<h2>$ + CSS Selectors</h2>
+					<ul>
+						<img src="./images/css1.png" />
+						<li>The CSS selector we use to style the button is the SAME code we use to have jQuery do something to the button.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>CSS selectors</h2>
+					<ul>
+						<li>Pretty much how you do 90% of things in jQuery</li>
+						<li>#ID or .class or mix and match, just like CSS</li>
+						<img src="./images/jqueryexample2.png" />
+					</ul>
+				</section>
+
+				<section>
+					<h2>More CSS selectors</h2>
+					<img src="./images/jqueryexample3.png" />
+				</section>
+
+				<section>
+					<h2>Back to window.onload...</h2>
+					<ul>
+						<li>Old way, could only do one window.onload per page, all others would silently fail.</li>
+						<img src="./images/onload1.png" />
+						<li>The jQuery way to do it:</li>
+						<img src="./images/onload2.png" />
+					</ul>
+				</section>
+
+				<section>
+					<h2>$(document).ready()</h2>
+					<ul>
+						<li>Can have as many as I want.</li>
+						<li>jQuery queues them up in the order they're found (top – down in the page)</li>
+						<li>Fires them all in that order, after the page has been loaded.</li>
+						<li>Safer than window.onload</li>
+						<li>Safer than just using in-line JavaScript (e.g. our first example).</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Events</h2>
+					<ul>
+						<li>All the same JavaScript events we're used to – click, mouseover, mouseup, form submit, etc</li>
+						<li>Plain JavaScript:</li>
+						<img src="./images/eventjavascript1.png" />
+						<li>The same thing in jQuery:</li>
+						<img src="./images/eventjquery.png" />
+					</ul>
+				</section>
+
+				<section>
+					<h2>.each()</h2>
+					<ul>
+						<li>jQuery way to loop over things...</li>
+						<img src="./images/eachexample1.png" />
+					</ul>
+				</section>
+
+				<section>
+					<h2>Hiding Content</h2>
+					<img src="./images/hidingcontent1.png" />
+				</section>
+
+				<section>
+					<h2>Showing Content</h2>
+					<img src="./images/showingcontent1.png" />
+				</section>				
+
+
+				<section>
+					<h2>Toggling Between Hide and Show</h2>
+					<img src="./images/showingcontent1.png" />
+				</section>				
+
+
+
+				<section>
+					<h2>Anonymous Functions</h2>
+<pre>
+function helloWorld()
+{
+	// a regular JavaScript function 
+	// named helloWorld
+}
+
+helloWorld = function()
+{
+	// a regular JavaScript function
+	// named helloWorld
+	// that can be used as a variable too
+}
+</pre>
+				</section>
+
+				<section>
+					<h2>Anonymous Functions</h2>
+					<ul>
+						<li>
+<pre>
+validateForm = function()
+{
+	// make sure our form is valid before submitting
+}
+
+$( "#submit" ).on( "click", validateForm );
+</pre>
+						</li>
+						<li>You'll see this a lot in jQuery. You only use validateForm <em>once</em>. Can be lazy and do this:
+<pre>
+$( "#submit" ).on( "click", <span class="highlight">function()
+{
+	// make sure our form is valid before submitting
+}</span>);
+</pre>
+						</li>
+						<li>Example: AnonymousFunctionsPrimer</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>jQuery Examples</h2>
+
+					<ul>
+						<li>Hello World</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h2>Putting It All Together</h2>
+					<p>Infinite Scrolling Demo</p>
+				</section>
+
+				<section>
+					<h2>What's The Catch?</h2>
+					<ul>
+						<li>Debugging is a little different.</li>
+						<li>$(this) takes getting used to.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Other Info</h2>
+					<ul>
+						<li>jquery.com - official reference</li>
+						<li>Book: Learning jQuery, Packt Publishing</li>
+						<li>Stack Overflow</li>
+						<li>Bootstrap uses jQuery</li>
+						<li>For most browser compatibility use 1.x series</li>
+					</ul>
+				</section>				
+
+				<section>
+					<h2>Questions? Comments? Need Consulting?</h2>
+					<ul>
+						<li>southofshasta.com</li>
+						<li>nolan@southofshasta.com</li>
+						<li>Twitter: @southofshasta</li>
+						<li>Github: nolanerck</li>
+					</ul>
+					<p>Thanks!</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../Reveal.js/js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize();
+		</script>
+
+	</body>
+</html>
